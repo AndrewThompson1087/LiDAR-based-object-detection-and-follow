@@ -29,6 +29,7 @@ class ObjectDetectionNode(Node):
         self.unique_people_count = 0
         self.tracked_people = []
         self.next_id = 1
+        self.subscription
 
     def LaserScanCallback(self, scan: LaserScan):
         """
