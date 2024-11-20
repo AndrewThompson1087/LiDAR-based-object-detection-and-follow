@@ -1,7 +1,7 @@
 # Object Detection and Tracking ROS2 Package
 
 ## Overview
-This project aims to develop software that processes data from a LIDAR sensor to detect and track the movement of people in a given scene. 
+This project aims to develop software that processes data from a LIDAR sensor to detect and track the movement of people in a given scene, and then move towards the person. 
 
 ## Task Description
 The project provides a collection of bag files recorded by a robot equipped with a laser range finder (LIDAR). Each bag file contains data where the robot and nearby obstacles remain stationary, while one or more people walk past the robot. The task involves:
