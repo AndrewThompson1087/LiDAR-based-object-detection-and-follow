@@ -16,12 +16,8 @@ def generate_launch_description():
         package='project3',
         executable='ObjectTrackingNode'
     ) # This is node2
-    
-    arg = DeclareLaunchArgument('arg_name')  
-    # Declare a launch argument named 'arg_name'
 
     ld = LaunchDescription([
-        arg,  # Add the launch argument to the launch description
         object_detection_node,
         object_tracking_node
     ])
