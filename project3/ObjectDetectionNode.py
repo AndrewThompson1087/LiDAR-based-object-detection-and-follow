@@ -76,21 +76,24 @@ class ObjectDetectionNode(Node):
         stationary_points = []
 
         for i, current_range in enumerate(scan.ranges):
-            static_range = self.first_scan_data[i]
+            if not np.isfinite(current_range):  # Skip invalid points
+                continue
 
+            static_range = self.first_scan_data[i]
+        
             if current_range < (static_range - MOVING_OBSTACLE_THRESHOLD):
                 bearing_i = scan.angle_min + i * scan.angle_increment
                 moving_points.append(Point32(
-                    x = current_range * cos(bearing_i),
-                    y = current_range * sin(bearing_i),
-                    z = 0.0
+                    x=current_range * cos(bearing_i),
+                    y=current_range * sin(bearing_i),
+                    z=0.0
                 ))
             else:
                 bearing_i = scan.angle_min + i * scan.angle_increment
                 stationary_points.append(Point32(
-                    x = current_range * cos(bearing_i),
-                    y = current_range * sin(bearing_i),
-                    z = 0.0
+                    x=current_range * cos(bearing_i),
+                    y=current_range * sin(bearing_i),
+                    z=0.0
                 ))
 
         mov = PointCloud(header=scan.header, points=moving_points)
