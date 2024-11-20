@@ -10,11 +10,7 @@ def generate_launch_description():
         remappings=[('/scan', '/scan')]  # Remap /scan topic if necessary, was node1
     )
     
-    arg = DeclareLaunchArgument('arg_name')  
-    # Declare a launch argument named 'arg_name'
-
     ld = LaunchDescription([
-        arg,  # Add the launch argument to the launch description
         detection_and_tracking_node  # Add the Node action to the launch description
     ])
 
