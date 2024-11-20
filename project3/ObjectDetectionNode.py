@@ -42,6 +42,8 @@ class ObjectDetectionNode(Node):
             self.first_scan_data = scan.ranges
             return
 
+        self.get_logger().info(f"First range: {scan.ranges[0]:.2f} meters")
+        
         moving_points, stationary_points = self.identify_moving_obstacles(scan)
         self.publisher_moving.publish(moving_points)
         self.publisher_stationary.publish(stationary_points)
