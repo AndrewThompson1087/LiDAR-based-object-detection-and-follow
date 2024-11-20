@@ -94,6 +94,9 @@ class ObjectTrackingNode(Node):
             if i not in used_centroids:
                 self.tracked_people.append(People(centroid))
                 self.unique_people_count += 1
+            else:
+                pass
+                #self.tracked_people[i].updated = False          might add this
 
         for track in self.tracked_people:
             if not track.updated:
@@ -103,6 +106,7 @@ class ObjectTrackingNode(Node):
         self.tracked_people = [track for track in self.tracked_people if track.lifetime > 0]
 
         self.get_logger().info(f"Total unique people counted: {self.unique_people_count}")
+        # if self.get_clock().now().seconds_nanoseconds()[0] % 2 == 0:  # Publish every 2 seconds
         count_msg = Int64()
         count_msg.data = self.unique_people_count
         self.publisher_count.publish(count_msg)
