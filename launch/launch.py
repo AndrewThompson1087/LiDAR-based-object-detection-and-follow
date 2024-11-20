@@ -7,7 +7,7 @@ def generate_launch_description():
     # Node for object detection, subscribing to TurtleBot3's /scan topic
     object_detection_node = Node(
         package='project3',
-        executable='ObjectDetectionNode']  # Remap /scan topic if necessary, this was node1
+        executable='ObjectDetectionNode'  # Remap /scan topic if necessary, this was node1
     )
 
     # Node for object tracking
