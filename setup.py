@@ -20,9 +20,6 @@ setup(
     description='TODO: Package description',
     license='TODO: License declaration',
     entry_points={
-        'console_scripts': ['ObjectDetectionNode = project3.ObjectDetectionNode:main',
-        'ObjectTrackingNode = project3.ObjectTrackingNode:main',
-        'DetectionAndTracking = project3.DetectionAndTracking:main'
-        ],
+        'console_scripts': ['ObjectDetectionNode = project3.ObjectDetectionNode:main'],
     },
 )
