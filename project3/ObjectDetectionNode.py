@@ -38,11 +38,14 @@ class ObjectDetectionNode(Node):
 
         Args:
             scan (sensor_msgs.msg.LaserScan): The incoming LaserScan message.
+
+        """
         
         if self.first_scan_data is None:
+            self.get_logger().info("Empty")
             self.first_scan_data = scan.ranges
             return
-        """
+        
         min_distance = min(scan.ranges)
         min_index = msg.ranges.index(min_distance)
         angle = msg.angle_min + min_index * msg.angle_increment
