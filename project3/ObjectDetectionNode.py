@@ -30,6 +30,7 @@ class ObjectDetectionNode(Node):
         self.tracked_people = []
         self.next_id = 1
         self.subscription
+        self.get_logger().info('Object Vector Node has been started.')
 
     def LaserScanCallback(self, scan: LaserScan):
         """
@@ -37,10 +38,11 @@ class ObjectDetectionNode(Node):
 
         Args:
             scan (sensor_msgs.msg.LaserScan): The incoming LaserScan message.
-        """
+        
         if self.first_scan_data is None:
             self.first_scan_data = scan.ranges
             return
+        """
 
         self.get_logger().info(f"First range: {scan.ranges[0]:.2f} meters")
         
@@ -143,7 +145,10 @@ class ObjectDetectionNode(Node):
 def main(args = None):
     rclpy.init(args = args)
     node = ObjectDetectionNode()
-    rclpy.spin(node)
+    try:
+        rclpy.spin(node)
+    except: KeyboardInterupt
+        pass
     node.destroy_node()
     rclpy.shutdown()
 
