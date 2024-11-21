@@ -47,8 +47,8 @@ class ObjectDetectionNode(Node):
             return
         
         min_distance = min(scan.ranges)
-        min_index = msg.ranges.index(min_distance)
-        angle = msg.angle_min + min_index * msg.angle_increment
+        min_index = scan.ranges.index(min_distance)
+        angle = scan.angle_min + min_index * scan.angle_increment
         self.get_logger().info(f"Closest object: Distance = {min_distance:.2f} meters, Angle = {angle:.2f} radians")
         
         moving_points, stationary_points = self.identify_moving_obstacles(scan)
