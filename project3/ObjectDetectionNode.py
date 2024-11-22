@@ -5,6 +5,7 @@ from geometry_msgs.msg import Point32
 from math import sin, cos
 import numpy as np
 from sklearn.cluster import DBSCAN
+from rclpy.qos import QosProfile, ReliabilityPolicy
 
 # Global Variables
 MOVING_OBSTACLE_THRESHOLD = 0.5
@@ -21,7 +22,10 @@ class ObjectDetectionNode(Node):
     """
     def __init__(self):
         super().__init__('object_detection_node')
-        self.subscription = self.create_subscription(LaserScan, '/scan', self.LaserScanCallback, 10)
+        qos_profile = QoSProfile(
+            reliability=ReliabilityPolicy.RELIABLE
+        )
+        self.subscription = self.create_subscription(LaserScan, '/scan', self.LaserScanCallback, qos_profile)
         self.publisher_moving = self.create_publisher(PointCloud, '/point_cloud_moving', 10)
         self.publisher_stationary = self.create_publisher(PointCloud, '/point_cloud_stationary', 10)
         self.publisher_centroid = self.create_publisher(PointCloud, '/person_location', 10)
