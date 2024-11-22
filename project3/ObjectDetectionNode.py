@@ -23,7 +23,9 @@ class ObjectDetectionNode(Node):
     def __init__(self):
         super().__init__('object_detection_node')
         qos_profile = QoSProfile(
-            reliability=ReliabilityPolicy.RELIABLE
+            reliability=ReliabilityPolicy.RELIABLE,
+            history=HistoryPolicy.KEEP_LAST,  # Optional, specify history policy
+            depth=10  # Optional, buffer depth for KEEP_LAST
         )
         self.subscription = self.create_subscription(LaserScan, '/scan', self.LaserScanCallback, qos_profile)
         self.publisher_moving = self.create_publisher(PointCloud, '/point_cloud_moving', 10)
