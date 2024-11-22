@@ -15,9 +15,15 @@ def generate_launch_description():
         executable='ObjectTrackingNode'  # Remap /scan topic if necessary, this was node2
     )
 
+    turtle_move_node = Node(
+        package='project3'
+        executable='TurtleMoveNode'
+    )
+
     ld = LaunchDescription([
         object_detection_node,
-        object_tracking_node
+        object_tracking_node,
+        turtle_move_node
     ])
 
     return ld  # Return the generated launch description
