@@ -158,7 +158,7 @@ def main(args = None):
     node = ObjectDetectionNode()
     try:
         rclpy.spin(node)
-    except: KeyboardInterrupt:
+    except KeyboardInterrupt:
         pass
     node.destroy_node()
     rclpy.shutdown()
