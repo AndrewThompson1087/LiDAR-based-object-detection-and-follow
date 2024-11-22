@@ -75,7 +75,7 @@ class MoveToPersonNode(Node):
         # In this example, we simply move the robot straight towards the target
         # In a real scenario, you should include logic for stopping at the target
         distance_to_target = ((target_x ** 2) + (target_y ** 2)) ** 0.5
-        while distance_to_target > 0.1:
+        while distance_to_target > 0.21:
             self.cmd_vel_pub.publish(twist)
             time.sleep(0.1)  # Adjust to ensure the robot doesn't move too fast
 
