@@ -40,6 +40,7 @@ class ObjectDetectionNode(Node):
             scan (sensor_msgs.msg.LaserScan): The incoming LaserScan message.
 
         """
+        print("LaserCallback")
         
         if self.first_scan_data is None:
             self.get_logger().info("Empty")
@@ -49,6 +50,7 @@ class ObjectDetectionNode(Node):
         min_distance = min(scan.ranges)
         min_index = scan.ranges.index(min_distance)
         angle = scan.angle_min + min_index * scan.angle_increment
+        
         self.get_logger().info(f"Closest object: Distance = {min_distance:.2f} meters, Angle = {angle:.2f} radians")
         
         moving_points, stationary_points = self.identify_moving_obstacles(scan)
